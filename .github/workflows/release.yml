@@ -1,0 +1,104 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        goos: [linux, windows, darwin]
+        goarch: [amd64, arm64]
+        exclude:
+          - goos: windows
+            goarch: arm64
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: "1.21"
+
+      - name: Build
+        env:
+          GOOS: ${{ matrix.goos }}
+          GOARCH: ${{ matrix.goarch }}
+        run: |
+          if [ "$GOOS" = "windows" ]; then
+            go build -ldflags="-s -w" -o crypto-${{ matrix.goos }}-${{ matrix.goarch }}.exe .
+          else
+            go build -ldflags="-s -w" -o crypto-${{ matrix.goos }}-${{ matrix.goarch }} .
+          fi
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: crypto-${{ matrix.goos }}-${{ matrix.goarch }}
+          path: crypto-*
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download all artifacts
+        uses: actions/download-artifact@v3
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            */crypto-*
+          body: |
+            ## 🚀 Crypto Price CLI ${{ github.ref_name }}
+
+            ### 新增功能
+            - 实时加密货币价格查询
+            - 多货币支持（USD, EUR, CNY等）
+            - 加密货币排行榜
+            - 美观的命令行界面
+
+            ### 安装方法
+
+            #### macOS (Apple Silicon)
+            ```bash
+            wget https://github.com/${{ github.repository }}/releases/download/${{ github.ref_name }}/crypto-darwin-arm64
+            chmod +x crypto-darwin-arm64
+            sudo mv crypto-darwin-arm64 /usr/local/bin/crypto
+            ```
+
+            #### macOS (Intel)
+            ```bash
+            wget https://github.com/${{ github.repository }}/releases/download/${{ github.ref_name }}/crypto-darwin-amd64
+            chmod +x crypto-darwin-amd64
+            sudo mv crypto-darwin-amd64 /usr/local/bin/crypto
+            ```
+
+            #### Linux (x64)
+            ```bash
+            wget https://github.com/${{ github.repository }}/releases/download/${{ github.ref_name }}/crypto-linux-amd64
+            chmod +x crypto-linux-amd64
+            sudo mv crypto-linux-amd64 /usr/local/bin/crypto
+            ```
+
+            #### Windows (x64)
+            下载 `crypto-windows-amd64.exe` 并重命名为 `crypto.exe`，放入PATH环境变量中。
+
+            ### 使用示例
+            ```bash
+            crypto price bitcoin
+            crypto list -l 10
+            ```
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
