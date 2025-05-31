@@ -5,7 +5,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/yourusername/crypto-price-cli/api"
+	"github.com/Bo-00/crypto-price-cli/api"
 
 	"github.com/fatih/color"
 	"github.com/olekukonko/tablewriter"

@@ -1,9 +1,11 @@
-# �� Crypto Price CLI
+# 🚀 Crypto Price CLI
 
 [![Go Version](https://img.shields.io/badge/Go-1.21+-blue.svg)](https://golang.org)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Release](https://img.shields.io/github/release/yourusername/crypto-price-cli.svg)](https://github.com/yourusername/crypto-price-cli/releases)
-[![Downloads](https://img.shields.io/github/downloads/yourusername/crypto-price-cli/total.svg)](https://github.com/yourusername/crypto-price-cli/releases)
+[![Release](https://img.shields.io/github/release/Bo-00/crypto-price-cli.svg)](https://github.com/Bo-00/crypto-price-cli/releases)
+[![Downloads](https://img.shields.io/github/downloads/Bo-00/crypto-price-cli/total.svg)](https://github.com/Bo-00/crypto-price-cli/releases)
+[![Go Report Card](https://goreportcard.com/badge/github.com/Bo-00/crypto-price-cli)](https://goreportcard.com/report/github.com/Bo-00/crypto-price-cli)
+[![License](https://img.shields.io/github/license/Bo-00/crypto-price-cli.svg)](LICENSE)
 
 一个功能强大的加密货币价格查询命令行工具，支持实时价格查询、市场数据显示等功能。
 
@@ -23,18 +25,18 @@
 
 ### 方法 1：下载预编译二进制文件（推荐）
 
-前往 [Releases](https://github.com/yourusername/crypto-price-cli/releases) 页面下载适合你系统的版本：
+前往 [Releases](https://github.com/Bo-00/crypto-price-cli/releases) 页面下载适合你系统的版本：
 
 #### macOS
 
 ```bash
 # Apple Silicon (M1/M2)
-curl -L https://github.com/yourusername/crypto-price-cli/releases/latest/download/crypto-darwin-arm64 -o crypto
+curl -L https://github.com/Bo-00/crypto-price-cli/releases/latest/download/crypto-darwin-arm64 -o crypto
 chmod +x crypto
 sudo mv crypto /usr/local/bin/
 
 # Intel
-curl -L https://github.com/yourusername/crypto-price-cli/releases/latest/download/crypto-darwin-amd64 -o crypto
+curl -L https://github.com/Bo-00/crypto-price-cli/releases/latest/download/crypto-darwin-amd64 -o crypto
 chmod +x crypto
 sudo mv crypto /usr/local/bin/
 ```
@@ -42,7 +44,7 @@ sudo mv crypto /usr/local/bin/
 #### Linux
 
 ```bash
-curl -L https://github.com/yourusername/crypto-price-cli/releases/latest/download/crypto-linux-amd64 -o crypto
+curl -L https://github.com/Bo-00/crypto-price-cli/releases/latest/download/crypto-linux-amd64 -o crypto
 chmod +x crypto
 sudo mv crypto /usr/local/bin/
 ```
@@ -54,13 +56,13 @@ sudo mv crypto /usr/local/bin/
 ### 方法 2：通过 Go 安装
 
 ```bash
-go install github.com/yourusername/crypto-price-cli@latest
+go install github.com/Bo-00/crypto-price-cli@latest
 ```
 
 ### 方法 3：从源码构建
 
 ```bash
-git clone https://github.com/yourusername/crypto-price-cli.git
+git clone https://github.com/Bo-00/crypto-price-cli.git
 cd crypto-price-cli
 chmod +x install.sh
 ./install.sh
@@ -151,7 +153,7 @@ crypto list -l 50 -c jpy
 
 ## 🐛 问题反馈
 
-如果遇到问题，请在 [Issues](https://github.com/yourusername/crypto-price-cli/issues) 中报告。
+如果遇到问题，请在 [Issues](https://github.com/Bo-00/crypto-price-cli/issues) 中报告。
 
 ## 📄 许可证
 
