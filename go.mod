@@ -1,4 +1,4 @@
-module github.com/yourusername/crypto-price-cli
+module github.com/Bo-00/crypto-price-cli
 
 go 1.21
 
